@@ -1,0 +1,112 @@
+
+1 Zeile eingefügt.
+
+
+Fehler beim Start in Zeile: 11 in Befehl -
+INSERT INTO Familienwohnungen (FerienWohnungsNr, Preis_in_Euro, Größe_in_qm, Beschreibung, Anzahl_Zimmer, Adresse)
+VALUES (998, 80, 85, 'Kleine Testwohnung', 2, 1)
+Fehler bei Befehlszeile: 11 Spalte: 13
+Fehlerbericht -
+SQL-Fehler: ORA-01402: Verletzung der WHERE-Klausel einer View WITH CHECK OPTION
+
+https://docs.oracle.com/error-help/db/ora-01402/01402. 00000 -  "view WITH CHECK OPTION where-clause violation"
+*Cause:    An INSERT or UPDATE statement was attempted on a view
+           created with the CHECK OPTION. This would have resulted in the
+           creation of a row that would not satisfy the view's WHERE
+           clause.
+*Action:   Examine the view's WHERE clause in the dictionary
+           table VIEWS. If the current view does not have the CHECK
+           OPTION, then its FROM clause must reference a second view that
+           is defined using the CHECK OPTION. The second view's WHERE
+           clause must also be satisfied by any INSERT or UPDATE
+           statements. To insert the row, it may be necessary to insert
+           it directly into the underlying table, rather than through the
+           view.
+
+More Details :
+https://docs.oracle.com/error-help/db/ora-01402/
+
+Fehler beim Start in Zeile: 14 in Befehl -
+UPDATE Familienwohnungen 
+SET Größe_in_qm = 90 
+WHERE FerienWohnungsNr = 999
+Fehler bei Befehlszeile: 14 Spalte: 8
+Fehlerbericht -
+SQL-Fehler: ORA-01402: Verletzung der WHERE-Klausel einer View WITH CHECK OPTION
+
+https://docs.oracle.com/error-help/db/ora-01402/01402. 00000 -  "view WITH CHECK OPTION where-clause violation"
+*Cause:    An INSERT or UPDATE statement was attempted on a view
+           created with the CHECK OPTION. This would have resulted in the
+           creation of a row that would not satisfy the view's WHERE
+           clause.
+*Action:   Examine the view's WHERE clause in the dictionary
+           table VIEWS. If the current view does not have the CHECK
+           OPTION, then its FROM clause must reference a second view that
+           is defined using the CHECK OPTION. The second view's WHERE
+           clause must also be satisfied by any INSERT or UPDATE
+           statements. To insert the row, it may be necessary to insert
+           it directly into the underlying table, rather than through the
+           view.
+
+More Details :
+https://docs.oracle.com/error-help/db/ora-01402/
+Rollback abgeschlossen.
+
+Fehler beim Start in Zeile: 23 in Befehl -
+INSERT INTO Kunde (KundenNr, Name, Vorname, Geburtsdatum, Adresse, Bankverbindung, Telefonnummer)
+VALUES (888, 'Testmann', 'Thomas', TO_DATE('1991-05-15', 'YYYY-MM-DD'), 1, 'DE123456789', '01511234567')
+Fehlerbericht -
+ORA-01400: Einfügen von NULL in ("DBS26"."KUNDE"."E-Mail") nicht möglich
+
+https://docs.oracle.com/error-help/db/ora-01400/
+
+More Details :
+https://docs.oracle.com/error-help/db/ora-01400/
+
+Fehler beim Start in Zeile: 28 in Befehl -
+UPDATE MidAgeKunden 
+SET KundenAlter = 38 
+WHERE KundenNr = 888
+Fehler bei Befehlszeile: 29 Spalte: 5
+Fehlerbericht -
+SQL-Fehler: ORA-01733: Virtuelle Spalte hier nicht zulässig
+
+https://docs.oracle.com/error-help/db/ora-01733/01733. 00000 -  "virtual column not allowed here"
+*Cause:    An attempt was made to use an INSERT, UPDATE, or DELETE
+           statement on an expression in a view.
+*Action:   INSERT, UPDATE, or DELETE data in the base tables,
+           instead of the view.
+
+More Details :
+https://docs.oracle.com/error-help/db/ora-01733/
+Rollback abgeschlossen.
+
+Fehler beim Start in Zeile: 37 in Befehl -
+INSERT INTO MidAgeKundenOhneGebDatum (KundenNr, Name, Vorname, Adresse, Bankverbindung)
+VALUES (887, 'Ohne', 'Geburtstag', 1, 'DE12345')
+Fehlerbericht -
+ORA-01400: Einfügen von NULL in ("DBS26"."KUNDE"."GEBURTSDATUM") nicht möglich
+
+https://docs.oracle.com/error-help/db/ora-01400/
+
+More Details :
+https://docs.oracle.com/error-help/db/ora-01400/
+Rollback abgeschlossen.
+
+Fehler beim Start in Zeile: 45 in Befehl -
+DELETE FROM GuteFluggesellschaften WHERE IATACode = 'LH'
+Fehler bei Befehlszeile: 45 Spalte: 13
+Fehlerbericht -
+SQL-Fehler: ORA-42399: DML-Vorgang kann auf schreibgeschützter View nicht ausgeführt werden
+
+https://docs.oracle.com/error-help/db/ora-42399/42399.0000 - "cannot perform a DML operation on a read-only view"
+*Cause:    An attempt was made to insert, delete, or update row(s) of a
+           view created with read-only option. DML operations on such views
+           are explicitly prohibited.
+*Action:   Perform the desired DML operation on the view's underlying base
+           table or issue ALTER VIEW ... READ WRITE command to make the
+           view updatable.
+
+More Details :
+https://docs.oracle.com/error-help/db/ora-42399/
+Rollback abgeschlossen.
